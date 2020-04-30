@@ -1,0 +1,9 @@
+
+{
+  "extensionTitle": {
+    "message": "Tooltip de alerta"
+  },
+  "extensionDescription": {
+    "message": "Muestra un tooltip con una alerta en los elementos del DOM seleccionados de los dominios permitidos"
+  }
+}

@@ -1,0 +1,11 @@
+
+{
+  "extensionTitle": {
+    "message": "Warning Tooltip",
+    "description": "The title of the extension, displayed in the web store"
+  },
+  "extensionDescription": {
+    "message": "Shows a tooltip with a warning over selected DOM elements of allowed domains.",
+    "description": "The description of the extension, displayed in the web store"
+  }
+}
