@@ -11,7 +11,7 @@
   <a href="https://github.com/hmartos/warning-tooltip/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/hmartos/warning-tooltip"></a>
 </p>
 
-This Chrome extension allows you to show a warning tooltip over specific DOM elements selected with a querySelector. This can be useful to warn a developer of the interaction with a production site, and avoid making destructive actions on live systems.
+This Chrome extension allows you to show a warning tooltip over specific DOM elements selected with a querySelector. This can be useful to warn a developer of the interaction with a production site, and avoid making undesired or destructive actions on live systems.
 
 <!-- ! TODO Screenshots -->
 
