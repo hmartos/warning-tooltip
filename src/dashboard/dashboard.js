@@ -82,7 +82,10 @@ function main(settings, spa) {
 function observeRecursively(targetNode, config, selector, settings) {
   // Callback function to execute when mutations are observed
   const callback = function(mutationsList, observer) {
-    addTooltipToElements(selector, settings);
+    if (addedNodes(mutationsList)) {
+      addTooltipToElements(selector, settings);
+    }
+
     observer.disconnect();
 
     observeRecursively(targetNode, config, selector, settings);
@@ -95,8 +98,22 @@ function observeRecursively(targetNode, config, selector, settings) {
   observer.observe(targetNode, config);
 }
 
+function addedNodes(mutations) {
+  let hasUpdates = false;
+
+  for (let index = 0; index < mutations.length; index++) {
+    const mutation = mutations[index];
+
+    if (mutation.type === 'childList' && mutation.addedNodes.length) {
+      hasUpdates = true;
+      break;
+    }
+  }
+
+  return hasUpdates;
+}
+
 function addTooltipToElements(selector, settings) {
-  debug(`Selecting DOM elements by selector '${selector}'`);
   let elements = document.querySelectorAll(selector);
   let count = 0;
   elements.forEach(element => {
@@ -105,7 +122,7 @@ function addTooltipToElements(selector, settings) {
       count++;
     }
   });
-  debug(`Added warning tooltips to ${count} DOM elenents by selector '${selector}'`);
+  debug(`Added warning tooltips to ${count} of ${elements.length} DOM elenents found by selector '${selector}'`);
 }
 
 // TODO Tooltips not showing i.e. google.com input[type='submit']
