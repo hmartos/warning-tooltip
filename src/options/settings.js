@@ -26,26 +26,26 @@ window.Parsley.on('form:success', function() {
   try {
     saveOptions();
   } catch (error) {
-    console.error('Error saving options', error);
+    console.error('Error saving settings', error);
   }
 });
 
 function loadOptions() {
   chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
     if (chrome.runtime.lastError) {
-      console.error('Error loading options', chrome.runtime.lastError.message);
-      throw new Error('options-not-loaded');
+      console.error('Error loading settings', chrome.runtime.lastError.message);
+      throw new Error('settings-not-loaded');
     }
-    const options = result.warningTooltipOptions;
-    debug('Loaded options', options);
-    document.getElementById('domains').value = options.domains.join('\r\n');
-    document.getElementById('selector').value = options.selector;
-    document.getElementById('tooltipText').value = options.tooltipText;
+    const settings = result.warningTooltipOptions;
+    debug('Loaded settings', settings);
+    document.getElementById('domains').value = settings.domains.join('\r\n');
+    document.getElementById('selector').value = settings.selector;
+    document.getElementById('tooltipText').value = settings.tooltipText;
   });
 }
 
 function saveOptions() {
-  const options = {
+  const settings = {
     domains: document
       .getElementById('domains')
       .value.trim()
@@ -54,12 +54,12 @@ function saveOptions() {
     tooltipText: document.getElementById('tooltipText').value.trim(),
   };
 
-  chrome.storage.sync.set({ warningTooltipOptions: options }, function() {
+  chrome.storage.sync.set({ warningTooltipOptions: settings }, function() {
     if (chrome.runtime.lastError) {
-      console.error('Error loading options', chrome.runtime.lastError.message);
-      throw new Error('options-not-saved');
+      console.error('Error loading settings', chrome.runtime.lastError.message);
+      throw new Error('settings-not-saved');
     }
-    debug('Saved options', options);
+    debug('Saved settings', settings);
 
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';

@@ -21,29 +21,29 @@ window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
 chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
   try {
     if (chrome.runtime.lastError) {
-      console.error('Error loading options', chrome.runtime.lastError.message);
-      throw new Error('options-not-loaded');
+      console.error('Error loading settings', chrome.runtime.lastError.message);
+      throw new Error('settings-not-loaded');
     }
-    const options = result.warningTooltipOptions;
-    debug('Successfully loaded options', options);
+    const settings = result.warningTooltipOptions;
+    debug('Successfully loaded settings', settings);
 
-    setOnPageUpdateListener(options);
+    setOnPageUpdateListener(settings);
 
-    main(options);
+    main(settings);
   } catch (error) {
     console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
   }
 });
 
 // On page update listener - for SPA
-function setOnPageUpdateListener(options) {
+function setOnPageUpdateListener(settings) {
   debug('Setting page update listener for SPA routers');
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     try {
       if (msg === 'url-update') {
         debug('URL update event triggered');
 
-        main(options, true);
+        main(settings, true);
       }
     } catch (error) {
       console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
@@ -51,9 +51,9 @@ function setOnPageUpdateListener(options) {
   });
 }
 
-function main(options, spa) {
-  const domains = options.domains;
-  const selector = options.selector.trim();
+function main(settings, spa) {
+  const domains = settings.domains;
+  const selector = settings.selector.trim();
   debug('Configured domains', domains);
   debug(`Configured selector '${selector}'`);
 
@@ -63,7 +63,7 @@ function main(options, spa) {
   if (_.find(domains, domain => domain === hostname)) {
     debug(`Visited page '${pageUrl}' with hostname '${hostname}' in domain list`, domains);
     if (spa) {
-      addTooltipToElements(selector, options);
+      addTooltipToElements(selector, settings);
       return;
     }
 
@@ -73,19 +73,19 @@ function main(options, spa) {
     // Options for the observer (which mutations to observe)
     const config = { childList: true, subtree: true };
 
-    observeRecursively(targetNode, config, selector, options);
+    observeRecursively(targetNode, config, selector, settings);
   } else {
     debug(`Visited page '${pageUrl}' with hostname '${hostname}' not in domain list`, domains);
   }
 }
 
-function observeRecursively(targetNode, config, selector, options) {
+function observeRecursively(targetNode, config, selector, settings) {
   // Callback function to execute when mutations are observed
   const callback = function(mutationsList, observer) {
-    addTooltipToElements(selector, options);
+    addTooltipToElements(selector, settings);
     observer.disconnect();
 
-    observeRecursively(targetNode, config, selector, options);
+    observeRecursively(targetNode, config, selector, settings);
   };
 
   // Create an observer instance linked to the callback function
@@ -95,19 +95,19 @@ function observeRecursively(targetNode, config, selector, options) {
   observer.observe(targetNode, config);
 }
 
-function addTooltipToElements(selector, options) {
+function addTooltipToElements(selector, settings) {
   debug(`Selecting DOM elements by selector '${selector}'`);
   let elements = document.querySelectorAll(selector);
   let count = 0;
   elements.forEach(element => {
-    addTooltip(element, options);
+    addTooltip(element, settings);
     count++;
   });
   debug(`Added warning tooltips to ${count} DOM elenents by selector '${selector}'`);
 }
 
 // TODO Tooltips not showing i.e. google.com input[type='submit']
-function addTooltip(element, options) {
+function addTooltip(element, settings) {
   element.classList.add('hm-tooltip-warning');
 
   let tooltip = document.createElement('span');
@@ -121,7 +121,7 @@ function addTooltip(element, options) {
   //tooltip.appendChild(tooltipIcon);
 
   let tooltipText = document.createElement('span');
-  tooltipText.innerText = options.tooltipText;
+  tooltipText.innerText = settings.tooltipText;
   tooltip.appendChild(tooltipText);
 
   element.appendChild(tooltip);
