@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="settings.css" />
   </head>
   <body>
-    <div class="mainContent">
-      <div class="pageHeader">
+    <div class="hm-tooltip-settings">
+      <div>
         <h1>Warning Tooltip</h1>
       </div>
 
@@ -16,7 +16,7 @@
         <div>
           <h3>Domains</h3>
           <div>
-            <p>Lorem ipsum dolor amend sit</p>
+            <p class="hm-info">Hostnames of the domains where you want to add warning tooltips (one in each line)
             <textarea id="domains" rows="10" cols="50" data-parsley-trigger="input" required></textarea>
           </div>
         </div>
@@ -24,7 +24,7 @@
         <div>
           <h3>DOM elements selector</h3>
           <div>
-            <p>Lorem ipsum dolor amend sit</p>
+            <p class="hm-info">QuerySelector for the DOM elements in which you want to add warning tooltips</p>
             <input id="selector" type="text" data-parsley-trigger="input" required></input>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div>
           <h3>Tooltip text</h3>
           <div>
-            <p>Lorem ipsum dolor amend sit</p>
+            <p class="hm-info">Text to show in the warning tooltip</p>
             <input id="tooltipText" type="text" data-parsley-trigger="input" required></input>
           </div>
         </div>

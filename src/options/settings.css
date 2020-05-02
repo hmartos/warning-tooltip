@@ -1,15 +1,15 @@
-.mainContent {
+.hm-tooltip-settings {
   width: 500px;
   margin: 50px auto;
 }
 
-input.parsley-success,
+/* input.parsley-success,
 select.parsley-success,
 textarea.parsley-success {
   color: #468847;
   background-color: #dff0d8;
   border: 1px solid #d6e9c6;
-}
+} */
 
 input.parsley-error,
 select.parsley-error,
