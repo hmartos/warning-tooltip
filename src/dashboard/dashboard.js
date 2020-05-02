@@ -100,8 +100,10 @@ function addTooltipToElements(selector, settings) {
   let elements = document.querySelectorAll(selector);
   let count = 0;
   elements.forEach(element => {
-    addTooltip(element, settings);
-    count++;
+    if (!_.find(element.classList, elementClass => elementClass === 'hm-tooltip-warning')) {
+      addTooltip(element, settings);
+      count++;
+    }
   });
   debug(`Added warning tooltips to ${count} DOM elenents by selector '${selector}'`);
 }
