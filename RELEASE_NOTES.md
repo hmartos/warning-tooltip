@@ -2,6 +2,17 @@
 
 This file contains changes based on [this template](https://github.com/palantir/plottable/wiki/Release-Notes-Template)
 
+## 1.0.0
+
+### Improvements
+
+- Removed unnecessary declarativeContent permision
+
+### Other Changes
+
+- First release available on Chrome Web Store
+- Added screenshots
+
 ## 0.3.0
 
 ### New Features

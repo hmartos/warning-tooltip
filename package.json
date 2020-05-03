@@ -1,6 +1,6 @@
 {
   "name": "warning-tooltip",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Shows a tooltip with a warning over selected DOM elements of allowed domains.",
   "main": "warning-tooltip/manifest.json",
   "scripts": {
