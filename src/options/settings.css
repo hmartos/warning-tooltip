@@ -37,3 +37,8 @@ textarea.parsley-error {
 .parsley-errors-list.filled {
   opacity: 1;
 }
+
+.hm-save-btn {
+  margin-top: 25px;
+  width: 75px;
+}

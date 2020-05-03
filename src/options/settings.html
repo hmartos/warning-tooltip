@@ -7,38 +7,38 @@
   <body>
     <div class="hm-tooltip-settings">
       <div>
-        <h1>Warning Tooltip</h1>
+        <h1 id="title" class="hm-title"></h1>
       </div>
 
-      <h2>Settings</h2>
+      <h2 id="settingsTitle" class="hm-settings-title"></h2>
 
       <form id="settingsForm" data-parsley-validate>
-        <div>
-          <h3>Domains</h3>
+        <div id="domainsContainer" class="domains-container">
+          <h3></h3>
           <div>
-            <p class="hm-info">Hostnames of the domains where you want to add warning tooltips (one in each line)
+            <p class="hm-info"></p>
             <textarea id="domains" rows="10" cols="50" data-parsley-trigger="input" required></textarea>
           </div>
         </div>
 
-        <div>
-          <h3>DOM elements selector</h3>
+        <div id="selectorContainer" class="selector-container">
+          <h3></h3>
           <div>
-            <p class="hm-info">QuerySelector for the DOM elements in which you want to add warning tooltips</p>
+            <p class="hm-info"></p>
             <input id="selector" type="text" data-parsley-trigger="input" required></input>
           </div>
         </div>
 
-        <div>
-          <h3>Tooltip text</h3>
+        <div id="tooltipTextContainer" class="tooltip-text-container">
+          <h3></h3>
           <div>
-            <p class="hm-info">Text to show in the warning tooltip</p>
+            <p class="hm-info"></p>
             <input id="tooltipText" type="text" data-parsley-trigger="input" required></input>
           </div>
         </div>
 
         <div id="status"></div>
-        <button id="save">Save</button>
+        <button id="save" class="hm-save-btn"></button>
       </form>
     </div>
     <script src="../vendor/js/jquery.min.js"></script>

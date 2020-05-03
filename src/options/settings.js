@@ -3,6 +3,8 @@
 const DEBUG_MODE = true;
 
 try {
+  buildSettingsPage();
+
   loadOptions();
 
   //Initialize settings form
@@ -29,6 +31,18 @@ window.Parsley.on('form:success', function() {
     console.error('Error saving settings', error);
   }
 });
+
+function buildSettingsPage() {
+  document.querySelector('#title').textContent = chrome.i18n.getMessage('extensionTitle');
+  document.querySelector('#settingsTitle').textContent = chrome.i18n.getMessage('settings');
+  document.querySelector('#domainsContainer h3').textContent = chrome.i18n.getMessage('domains');
+  document.querySelector('#domainsContainer .hm-info').textContent = chrome.i18n.getMessage('domainsInfo');
+  document.querySelector('#selectorContainer h3').textContent = chrome.i18n.getMessage('selector');
+  document.querySelector('#selectorContainer .hm-info').textContent = chrome.i18n.getMessage('selectorInfo');
+  document.querySelector('#tooltipTextContainer h3').textContent = chrome.i18n.getMessage('tooltipText');
+  document.querySelector('#tooltipTextContainer .hm-info').textContent = chrome.i18n.getMessage('tooltipTextInfo');
+  document.querySelector('#save').textContent = chrome.i18n.getMessage('save');
+}
 
 function loadOptions() {
   loadSettings()

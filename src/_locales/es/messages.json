@@ -9,6 +9,27 @@
   "settings": {
     "message": "Configuración"
   },
+  "domains": {
+    "message": "Dominios"
+  },
+  "selector": {
+    "message": "Selector de elementos DOM"
+  },
+  "tooltipText": {
+    "message": "Texto del tooltip"
+  },
+  "domainsInfo": {
+    "message": "Hostnames de los dominios en los que quieres mostrar tooltips de alerta (uno por línea)"
+  },
+  "selectorInfo": {
+    "message": "QuerySelector para los elementos DOM en los que quieres añadir tooltips de alerta"
+  },
+  "tooltipTextInfo": {
+    "message": "Texto que se muestra en el tooltip de alerta"
+  },
+  "save": {
+    "message": "Guardar"
+  },
   "showingTooltips": {
    "message": "Mostrando tooltips de alerta en esta pestaña"
   },

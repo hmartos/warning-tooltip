@@ -10,7 +10,35 @@
   },
   "settings": {
     "message": "Settings",
-    "description": "Link to settings on the popup"
+    "description": "Settings"
+  },
+  "domains": {
+    "message": "Domains",
+    "description": "Domains"
+  },
+  "selector": {
+    "message": "DOM elements selector",
+    "description": "DOM elements selector"
+  },
+  "tooltipText": {
+    "message": "Tooltip text",
+    "description": "Tooltip text"
+  },
+  "domainsInfo": {
+    "message": "Hostnames of the domains where you want to add warning tooltips (one in each line)",
+    "description": "Domains info"
+  },
+  "selectorInfo": {
+    "message": "QuerySelector for the DOM elements in which you want to add warning tooltips",
+    "description": "Selector info"
+  },
+  "tooltipTextInfo": {
+    "message": "Text to show in the warning tooltip",
+    "description": "Tooltip text info"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save"
   },
   "showingTooltips": {
    "message": "Showing warning tooltips in this tab",
