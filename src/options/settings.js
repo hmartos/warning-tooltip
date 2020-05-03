@@ -31,18 +31,16 @@ window.Parsley.on('form:success', function() {
 });
 
 function loadOptions() {
-  // TODO Extract to utils loadSettings
-  chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
-    if (chrome.runtime.lastError) {
-      console.error('Error loading settings', chrome.runtime.lastError.message);
-      throw new Error('settings-not-loaded');
-    }
-    const settings = result.warningTooltipOptions;
-    debug('Loaded settings', settings);
-    document.getElementById('domains').value = settings.domains.join('\r\n');
-    document.getElementById('selector').value = settings.selector;
-    document.getElementById('tooltipText').value = settings.tooltipText;
-  });
+  loadSettings()
+    .then(settings => {
+      document.getElementById('domains').value = settings.domains.join('\r\n');
+      document.getElementById('selector').value = settings.selector;
+      document.getElementById('tooltipText').value = settings.tooltipText;
+    })
+    .catch(error => {
+      // TODO Show error
+      console.error('Error loading settings in options page', error);
+    });
 }
 
 function saveOptions() {
