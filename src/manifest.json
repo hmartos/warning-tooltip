@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
-  "permissions": ["activeTab", "declarativeContent", "storage", "*://*/*"],
+  "permissions": ["activeTab", "storage", "*://*/*"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
