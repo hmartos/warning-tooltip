@@ -20,6 +20,11 @@ body {
   text-align: center;
 }
 
+.options-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 *,
 :after,
 :before {

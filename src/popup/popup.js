@@ -11,7 +11,7 @@ try {
       console.error('Error getting tab status', error);
     });
 
-  document.querySelector('#goToSettingsBtn span').textContent = chrome.i18n.getMessage('settings');
+  document.querySelector('#goToSettingsBtn').textContent = chrome.i18n.getMessage('settings');
   let goToSettingsBtn = document.getElementById('goToSettingsBtn');
   goToSettingsBtn.onclick = function() {
     chrome.runtime.openOptionsPage();
