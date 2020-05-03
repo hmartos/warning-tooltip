@@ -6,8 +6,6 @@
 //https://stackoverflow.com/questions/2844565/is-there-a-javascript-jquery-dom-change-listener/39508954#39508954
 //https://stackoverflow.com/questions/38663247/mutationobserver-only-do-something-if-nodes-added-not-removed
 
-// TODO Popup redirect to settings https://developer.chrome.com/extensions/options#linking
-
 const DEBUG_MODE = true;
 
 // Error handler
@@ -18,22 +16,15 @@ window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
   );
 });
 
-chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
-  try {
-    if (chrome.runtime.lastError) {
-      console.error('Error loading settings', chrome.runtime.lastError.message);
-      throw new Error('settings-not-loaded');
-    }
-    const settings = result.warningTooltipOptions;
-    debug('Successfully loaded settings', settings);
-
+try {
+  loadSettings().then(settings => {
     setOnPageUpdateListener(settings);
 
     main(settings);
-  } catch (error) {
-    console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
-  }
-});
+  });
+} catch (error) {
+  console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
+}
 
 // On page update listener - for SPA
 function setOnPageUpdateListener(settings) {
@@ -54,14 +45,9 @@ function setOnPageUpdateListener(settings) {
 function main(settings, spa) {
   const domains = settings.domains;
   const selector = settings.selector.trim();
-  debug('Configured domains', domains);
-  debug(`Configured selector '${selector}'`);
-
-  const pageUrl = window.location.href;
   const hostname = window.location.hostname;
-  // TODO Control domains with or without www
-  if (_.find(domains, domain => domain === hostname)) {
-    debug(`Visited page '${pageUrl}' with hostname '${hostname}' in domain list`, domains);
+
+  if (isAllowedDomain(domains, hostname)) {
     if (spa) {
       addTooltipToElements(selector, settings);
       return;
@@ -74,8 +60,6 @@ function main(settings, spa) {
     const config = { childList: true, subtree: true };
 
     observeRecursively(targetNode, config, selector, settings);
-  } else {
-    debug(`Visited page '${pageUrl}' with hostname '${hostname}' not in domain list`, domains);
   }
 }
 
