@@ -28,6 +28,7 @@ function loadSettings() {
 }
 
 function isAllowedDomain(domains, hostname) {
+  // TODO Allow regular expresions in domains
   if (
     _.find(domains, domain => {
       return domain === hostname || `www.${domain}` === hostname;
