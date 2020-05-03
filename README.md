@@ -13,7 +13,9 @@
 
 This Chrome extension allows you to show a warning tooltip over specific DOM elements selected with a querySelector. This can be useful to warn a developer of the interaction with a production site, and avoid making undesired or destructive actions on live systems.
 
-<!-- ! TODO Screenshots -->
+![Screenshot](./screenshots/screenshot1_1280x800.png)
+![Screenshot](./screenshots/screenshot2_1280x800.png)
+![Screenshot](./screenshots/screenshot3_1280x800.png)
 
 ## Requirements
 
