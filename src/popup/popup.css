@@ -1,5 +1,4 @@
 body {
-  background-color: black;
   width: 250px;
   height: 150px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -19,6 +18,11 @@ body {
   height: 100%;
   margin-top: 25px;
   text-align: center;
+}
+
+.options-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 *,

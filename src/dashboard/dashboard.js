@@ -6,8 +6,6 @@
 //https://stackoverflow.com/questions/2844565/is-there-a-javascript-jquery-dom-change-listener/39508954#39508954
 //https://stackoverflow.com/questions/38663247/mutationobserver-only-do-something-if-nodes-added-not-removed
 
-// TODO Popup redirect to settings https://developer.chrome.com/extensions/options#linking
-
 const DEBUG_MODE = true;
 
 // Error handler
@@ -18,22 +16,15 @@ window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
   );
 });
 
-chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
-  try {
-    if (chrome.runtime.lastError) {
-      console.error('Error loading settings', chrome.runtime.lastError.message);
-      throw new Error('settings-not-loaded');
-    }
-    const settings = result.warningTooltipOptions;
-    debug('Successfully loaded settings', settings);
-
+try {
+  loadSettings().then(settings => {
     setOnPageUpdateListener(settings);
 
     main(settings);
-  } catch (error) {
-    console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
-  }
-});
+  });
+} catch (error) {
+  console.error(`Something went wrong, sorry... but here is a trace that could help to fix the problem`, error);
+}
 
 // On page update listener - for SPA
 function setOnPageUpdateListener(settings) {
@@ -54,14 +45,9 @@ function setOnPageUpdateListener(settings) {
 function main(settings, spa) {
   const domains = settings.domains;
   const selector = settings.selector.trim();
-  debug('Configured domains', domains);
-  debug(`Configured selector '${selector}'`);
-
-  const pageUrl = window.location.href;
   const hostname = window.location.hostname;
-  // TODO Control domains with or without www
-  if (_.find(domains, domain => domain === hostname)) {
-    debug(`Visited page '${pageUrl}' with hostname '${hostname}' in domain list`, domains);
+
+  if (isAllowedDomain(domains, hostname)) {
     if (spa) {
       addTooltipToElements(selector, settings);
       return;
@@ -74,15 +60,16 @@ function main(settings, spa) {
     const config = { childList: true, subtree: true };
 
     observeRecursively(targetNode, config, selector, settings);
-  } else {
-    debug(`Visited page '${pageUrl}' with hostname '${hostname}' not in domain list`, domains);
   }
 }
 
 function observeRecursively(targetNode, config, selector, settings) {
   // Callback function to execute when mutations are observed
   const callback = function(mutationsList, observer) {
-    addTooltipToElements(selector, settings);
+    if (addedNodes(mutationsList)) {
+      addTooltipToElements(selector, settings);
+    }
+
     observer.disconnect();
 
     observeRecursively(targetNode, config, selector, settings);
@@ -95,15 +82,31 @@ function observeRecursively(targetNode, config, selector, settings) {
   observer.observe(targetNode, config);
 }
 
+function addedNodes(mutations) {
+  let hasUpdates = false;
+
+  for (let index = 0; index < mutations.length; index++) {
+    const mutation = mutations[index];
+
+    if (mutation.type === 'childList' && mutation.addedNodes.length) {
+      hasUpdates = true;
+      break;
+    }
+  }
+
+  return hasUpdates;
+}
+
 function addTooltipToElements(selector, settings) {
-  debug(`Selecting DOM elements by selector '${selector}'`);
   let elements = document.querySelectorAll(selector);
   let count = 0;
   elements.forEach(element => {
-    addTooltip(element, settings);
-    count++;
+    if (!_.find(element.classList, elementClass => elementClass === 'hm-tooltip-warning')) {
+      addTooltip(element, settings);
+      count++;
+    }
   });
-  debug(`Added warning tooltips to ${count} DOM elenents by selector '${selector}'`);
+  debug(`Added warning tooltips to ${count} of ${elements.length} DOM elenents found by selector '${selector}'`);
 }
 
 // TODO Tooltips not showing i.e. google.com input[type='submit']
