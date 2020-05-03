@@ -5,5 +5,14 @@
   },
   "extensionDescription": {
     "message": "Muestra un tooltip con una alerta en los elementos del DOM seleccionados de los dominios permitidos"
+  },
+  "settings": {
+    "message": "Configuración"
+  },
+  "showingTooltips": {
+   "message": "Mostrando tooltips de alerta en esta pestaña"
+  },
+  "notShowingTooltips": {
+   "message": "No mostrando tooltips de alerta en esta pestaña"
   }
 }

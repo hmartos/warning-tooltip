@@ -31,6 +31,7 @@ window.Parsley.on('form:success', function() {
 });
 
 function loadOptions() {
+  // TODO Extract to utils loadSettings
   chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
     if (chrome.runtime.lastError) {
       console.error('Error loading settings', chrome.runtime.lastError.message);

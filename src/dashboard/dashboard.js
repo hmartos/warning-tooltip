@@ -18,6 +18,7 @@ window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
   );
 });
 
+// TODO Extract to utils loadSettings
 chrome.storage.sync.get(['warningTooltipOptions'], function(result) {
   try {
     if (chrome.runtime.lastError) {
@@ -59,6 +60,7 @@ function main(settings, spa) {
 
   const pageUrl = window.location.href;
   const hostname = window.location.hostname;
+  // TODO Extract to utils isAllowedDomain
   // TODO Control domains with or without www
   if (_.find(domains, domain => domain === hostname)) {
     debug(`Visited page '${pageUrl}' with hostname '${hostname}' in domain list`, domains);

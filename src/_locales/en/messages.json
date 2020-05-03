@@ -7,5 +7,17 @@
   "extensionDescription": {
     "message": "Shows a tooltip with a warning over selected DOM elements of allowed domains.",
     "description": "The description of the extension, displayed in the web store"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Link to settings on the popup"
+  },
+  "showingTooltips": {
+   "message": "Showing warning tooltips in this tab",
+    "description": "Warning Tooltip status in selected tab"
+  },
+  "notShowingTooltips": {
+   "message": "Not showing warning tooltips in this tab",
+    "description": "Warning Tooltip status in selected tab"
   }
 }
