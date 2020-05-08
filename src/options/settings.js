@@ -67,17 +67,16 @@ function saveOptions() {
     tooltipText: document.getElementById('tooltipText').value.trim(),
   };
 
-  chrome.storage.sync.set({ warningTooltipOptions: settings }, function() {
-    if (chrome.runtime.lastError) {
-      console.error('Error loading settings', chrome.runtime.lastError.message);
-      throw new Error('settings-not-saved');
-    }
-    debug('Saved settings', settings);
-
-    var status = document.getElementById('status');
-    status.textContent = 'Options saved.';
-    setTimeout(function() {
-      status.textContent = '';
-    }, 2000);
-  });
+  saveSettings(settings)
+    .then(() => {
+      var status = document.getElementById('status');
+      status.textContent = 'Options saved.';
+      setTimeout(function() {
+        status.textContent = '';
+      }, 2000);
+    })
+    .catch(error => {
+      // TODO Show error
+      console.error('Error loading settings in options page', error);
+    });
 }

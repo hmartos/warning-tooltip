@@ -12,6 +12,10 @@
     "message": "Settings",
     "description": "Settings"
   },
+  "usingDefaultSettings": {
+    "message": "You are using default settings. Configure the extension 👇",
+    "description": "Using default settings message"
+  },
   "domains": {
     "message": "Domains",
     "description": "Domains"
