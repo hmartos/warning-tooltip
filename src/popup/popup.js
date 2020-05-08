@@ -24,6 +24,12 @@ function getTabStatus() {
   return new Promise((resolve, reject) => {
     loadSettings()
       .then(settings => {
+        if (settings.defaultSettings) {
+          debug('Using default settings!', settings);
+          resolve(chrome.i18n.getMessage('usingDefaultSettings'));
+          return;
+        }
+
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
           const domains = settings.domains;
           const hostname = new URL(tabs[0].url).hostname;

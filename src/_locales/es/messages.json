@@ -9,6 +9,9 @@
   "settings": {
     "message": "Configuración"
   },
+  "usingDefaultSettings": {
+    "message": "Estás usando la configuración por defecto. Configura la extensión 👇"
+  },
   "domains": {
     "message": "Dominios"
   },
