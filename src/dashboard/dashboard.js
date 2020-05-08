@@ -102,15 +102,44 @@ function addTooltipToElements(selector, settings) {
   let count = 0;
   elements.forEach(element => {
     if (!_.find(element.classList, elementClass => elementClass === 'hm-tooltip-warning')) {
-      addTooltip(element, settings);
+      addEvent(element, settings);
       count++;
     }
   });
   debug(`Added warning tooltips to ${count} of ${elements.length} DOM elenents found by selector '${selector}'`);
 }
 
-// TODO Tooltips not showing i.e. google.com input[type='submit']
+function addEvent(element, settings) {
+  element.onmouseover = function() {
+    console.log('Oh yeah! You are over element', element, settings);
+    addTooltip(element, settings);
+  };
+
+  element.onmouseleave = function() {
+    console.log('Oh yeah! You leave the element', element, settings);
+    removeTooltip(element, settings);
+  };
+}
+
 function addTooltip(element, settings) {
+  if (!element.hasChildNodes()) {
+    addTooltipElement(element, settings);
+  } else {
+    let hasTooltipElement = false;
+    for (let i = 0; i < element.childNodes.length; i++) {
+      if (_.find(element.childNodes[i].classList, elementClass => elementClass === 'hm-tooltip-warning-text')) {
+        hasTooltipElement = true;
+      }
+    }
+
+    if (!hasTooltipElement) {
+      addTooltipElement(element, settings);
+    }
+  }
+}
+
+// TODO Tooltips not showing i.e. google.com input[type='submit']
+function addTooltipElement(element, settings) {
   element.classList.add('hm-tooltip-warning');
 
   let tooltip = document.createElement('span');
@@ -128,4 +157,15 @@ function addTooltip(element, settings) {
   tooltip.appendChild(tooltipText);
 
   element.appendChild(tooltip);
+}
+
+function removeTooltip(element, settings) {
+  console.log('Should remove tooltip', element);
+  if (element.hasChildNodes()) {
+    for (let i = 0; i < element.childNodes.length; i++) {
+      if (_.find(element.childNodes[i].classList, elementClass => elementClass === 'hm-tooltip-warning-text')) {
+        element.removeChild(element.childNodes[i]);
+      }
+    }
+  }
 }

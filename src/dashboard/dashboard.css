@@ -1,11 +1,10 @@
 .hm-tooltip-warning {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
 }
 
 .hm-tooltip-warning .hm-tooltip-warning-text {
-  visibility: hidden;
+  visibility: visible;
   width: 120px;
   background-color: #555;
   color: #fff;
@@ -17,7 +16,7 @@
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s;
 }
 
@@ -30,9 +29,4 @@
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-}
-
-.hm-tooltip-warning:hover .hm-tooltip-warning-text {
-  visibility: visible;
-  opacity: 1;
 }
