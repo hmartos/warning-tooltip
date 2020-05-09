@@ -2,6 +2,21 @@
 
 This file contains changes based on [this template](https://github.com/palantir/plottable/wiki/Release-Notes-Template)
 
+## 1.1.0
+
+### New Features
+
+- Added support for regular expressions on domain list
+
+### Improvements
+
+- Added default settings and warning message in the popup
+- Now tooltips are shown/hide on mouseove/nmouseleave events
+
+### Bug fixes
+
+- Fixed bug with tooltips not showing on totally static pages
+
 ## 1.0.0
 
 ### Improvements

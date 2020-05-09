@@ -1,12 +1,6 @@
 'use strict';
 
-// References
-//https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom/39332340#39332340
-//https://stackoverflow.com/questions/39301819/how-to-change-the-html-content-as-its-loading-on-the-page/39334319#39334319
-//https://stackoverflow.com/questions/2844565/is-there-a-javascript-jquery-dom-change-listener/39508954#39508954
-//https://stackoverflow.com/questions/38663247/mutationobserver-only-do-something-if-nodes-added-not-removed
-
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 // Error handler
 window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
@@ -45,11 +39,10 @@ function setOnPageUpdateListener(settings) {
 function main(settings, spa) {
   const domains = settings.domains;
   const selector = settings.selector.trim();
-  const hostname = window.location.hostname;
 
-  if (isAllowedDomain(domains, hostname)) {
+  if (isAllowedDomain(window.location, domains)) {
+    addTooltipToElements(selector, settings);
     if (spa) {
-      addTooltipToElements(selector, settings);
       return;
     }
 
@@ -102,15 +95,41 @@ function addTooltipToElements(selector, settings) {
   let count = 0;
   elements.forEach(element => {
     if (!_.find(element.classList, elementClass => elementClass === 'hm-tooltip-warning')) {
-      addTooltip(element, settings);
+      addEvent(element, settings);
       count++;
     }
   });
   debug(`Added warning tooltips to ${count} of ${elements.length} DOM elenents found by selector '${selector}'`);
 }
 
-// TODO Tooltips not showing i.e. google.com input[type='submit']
+function addEvent(element, settings) {
+  element.onmouseover = function() {
+    addTooltip(element, settings);
+  };
+
+  element.onmouseleave = function() {
+    removeTooltip(element, settings);
+  };
+}
+
 function addTooltip(element, settings) {
+  if (!element.hasChildNodes()) {
+    addTooltipElement(element, settings);
+  } else {
+    let hasTooltipElement = false;
+    for (let i = 0; i < element.childNodes.length; i++) {
+      if (_.find(element.childNodes[i].classList, elementClass => elementClass === 'hm-tooltip-warning-text')) {
+        hasTooltipElement = true;
+      }
+    }
+
+    if (!hasTooltipElement) {
+      addTooltipElement(element, settings);
+    }
+  }
+}
+
+function addTooltipElement(element, settings) {
   element.classList.add('hm-tooltip-warning');
 
   let tooltip = document.createElement('span');
@@ -128,4 +147,14 @@ function addTooltip(element, settings) {
   tooltip.appendChild(tooltipText);
 
   element.appendChild(tooltip);
+}
+
+function removeTooltip(element, settings) {
+  if (element.hasChildNodes()) {
+    for (let i = 0; i < element.childNodes.length; i++) {
+      if (_.find(element.childNodes[i].classList, elementClass => elementClass === 'hm-tooltip-warning-text')) {
+        element.removeChild(element.childNodes[i]);
+      }
+    }
+  }
 }

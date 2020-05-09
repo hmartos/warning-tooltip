@@ -4,10 +4,15 @@
   <h1 align="center">Warning Tooltip</h1>
 
   <h4 align="center">Shows a tooltip with a warning over selected DOM elements of allowed domains</h4>
+
+  <p align="center">
+    <a href="https://chrome.google.com/webstore/detail/warning-tooltip/ckgkmbahdjgcfjalbbgkgolgolbhihoe?utm_source=github"><strong>Install for Google Chrome &raquo;</strong></a>
+  </p>
 </p>
 
 <p align="center">
   <a href="https://github.com/hmartos/warning-tooltip/actions"><img alt="GitHub Actions status" src="https://github.com/hmartos/warning-tooltip/workflows/Node%20CI/badge.svg"></a>
+  <a href="https://chrome.google.com/webstore/detail/warning-tooltip/ckgkmbahdjgcfjalbbgkgolgolbhihoe?utm_source=github_badge"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/ckgkmbahdjgcfjalbbgkgolgolbhihoe"></a>
   <a href="https://github.com/hmartos/warning-tooltip/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/hmartos/warning-tooltip"></a>
 </p>
 

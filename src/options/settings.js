@@ -1,6 +1,6 @@
 'use strict';
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 try {
   buildSettingsPage();
@@ -10,7 +10,7 @@ try {
   //Initialize settings form
   $('#settingsForm').parsley();
 } catch (error) {
-  console.log(`Error initializing the settings form`, error);
+  console.error(`Error initializing the settings form`, error);
 }
 
 // Avoid reload of form on submit
@@ -52,7 +52,7 @@ function loadOptions() {
       document.getElementById('tooltipText').value = settings.tooltipText;
     })
     .catch(error => {
-      // TODO Show error
+      // TODO Show error with link to issues
       console.error('Error loading settings in options page', error);
     });
 }
@@ -67,17 +67,16 @@ function saveOptions() {
     tooltipText: document.getElementById('tooltipText').value.trim(),
   };
 
-  chrome.storage.sync.set({ warningTooltipOptions: settings }, function() {
-    if (chrome.runtime.lastError) {
-      console.error('Error loading settings', chrome.runtime.lastError.message);
-      throw new Error('settings-not-saved');
-    }
-    debug('Saved settings', settings);
-
-    var status = document.getElementById('status');
-    status.textContent = 'Options saved.';
-    setTimeout(function() {
-      status.textContent = '';
-    }, 2000);
-  });
+  saveSettings(settings)
+    .then(() => {
+      var status = document.getElementById('status');
+      status.textContent = 'Options saved.';
+      setTimeout(function() {
+        status.textContent = '';
+      }, 2000);
+    })
+    .catch(error => {
+      // TODO Show error with link to issues
+      console.error('Error loading settings in options page', error);
+    });
 }

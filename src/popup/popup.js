@@ -1,6 +1,6 @@
 'use strict';
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 try {
   getTabStatus()
@@ -24,15 +24,21 @@ function getTabStatus() {
   return new Promise((resolve, reject) => {
     loadSettings()
       .then(settings => {
+        if (settings.defaultSettings) {
+          debug('Using default settings!', settings);
+          resolve(chrome.i18n.getMessage('usingDefaultSettings'));
+          return;
+        }
+
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
           const domains = settings.domains;
-          const hostname = new URL(tabs[0].url).hostname;
+          const url = tabs[0].url;
 
-          if (isAllowedDomain(domains, hostname)) {
-            debug('Warning tooltips enabled for this domain', hostname);
+          if (isAllowedDomain(url, domains)) {
+            debug('Warning tooltips enabled for this domain', url);
             resolve(chrome.i18n.getMessage('showingTooltips'));
           } else {
-            debug('Warning tooltips not enabled for this domain', hostname);
+            debug('Warning tooltips not enabled for this domain', url);
             resolve(chrome.i18n.getMessage('notShowingTooltips'));
           }
         });
