@@ -45,9 +45,8 @@ function setOnPageUpdateListener(settings) {
 function main(settings, spa) {
   const domains = settings.domains;
   const selector = settings.selector.trim();
-  const hostname = window.location.hostname;
 
-  if (isAllowedDomain(domains, hostname)) {
+  if (isAllowedDomain(window.location, domains)) {
     if (spa) {
       addTooltipToElements(selector, settings);
       return;
