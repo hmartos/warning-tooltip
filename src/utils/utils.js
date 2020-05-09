@@ -10,7 +10,7 @@ function debug(message, data) {
 
 function loadSettings() {
   const DEFAULT_SETTINGS = {
-    domains: ['stackblitz.io'],
+    domains: ['hmartos.github.io'],
     selector: 'button.btn-show-tooltip',
     tooltipText: 'WARNING',
     defaultSettings: true,

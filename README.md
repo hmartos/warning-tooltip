@@ -6,6 +6,10 @@
   <h4 align="center">Shows a tooltip with a warning over selected DOM elements of allowed domains</h4>
 </p>
 
+<!-- TODO Remove console.logs -->
+<!-- TODO DEBUG_MODE false -->
+<!-- TODO Link to Chrome Web Store -->
+
 <p align="center">
   <a href="https://github.com/hmartos/warning-tooltip/actions"><img alt="GitHub Actions status" src="https://github.com/hmartos/warning-tooltip/workflows/Node%20CI/badge.svg"></a>
   <a href="https://github.com/hmartos/warning-tooltip/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/hmartos/warning-tooltip"></a>
