@@ -57,11 +57,12 @@ function saveSettings(settings) {
   });
 }
 
-function isAllowedDomain(domains, hostname) {
-  // TODO Allow regular expresions in domains
+function isAllowedDomain(url, domains) {
+  const hostname = new URL(url).hostname;
+
   if (
     _.find(domains, domain => {
-      return domain === hostname || `www.${domain}` === hostname;
+      return new RegExp(domain, 'i').test(hostname);
     })
   ) {
     debug(`Visited page with hostname '${hostname}' in domain list`, domains);
