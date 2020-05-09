@@ -1,6 +1,6 @@
 'use strict';
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 try {
   buildSettingsPage();
@@ -10,7 +10,7 @@ try {
   //Initialize settings form
   $('#settingsForm').parsley();
 } catch (error) {
-  console.log(`Error initializing the settings form`, error);
+  console.error(`Error initializing the settings form`, error);
 }
 
 // Avoid reload of form on submit
@@ -52,7 +52,7 @@ function loadOptions() {
       document.getElementById('tooltipText').value = settings.tooltipText;
     })
     .catch(error => {
-      // TODO Show error
+      // TODO Show error with link to issues
       console.error('Error loading settings in options page', error);
     });
 }
@@ -76,7 +76,7 @@ function saveOptions() {
       }, 2000);
     })
     .catch(error => {
-      // TODO Show error
+      // TODO Show error with link to issues
       console.error('Error loading settings in options page', error);
     });
 }
