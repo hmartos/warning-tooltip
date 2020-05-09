@@ -1,12 +1,6 @@
 'use strict';
 
-// References
-//https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom/39332340#39332340
-//https://stackoverflow.com/questions/39301819/how-to-change-the-html-content-as-its-loading-on-the-page/39334319#39334319
-//https://stackoverflow.com/questions/2844565/is-there-a-javascript-jquery-dom-change-listener/39508954#39508954
-//https://stackoverflow.com/questions/38663247/mutationobserver-only-do-something-if-nodes-added-not-removed
-
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 // Error handler
 window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
@@ -110,12 +104,10 @@ function addTooltipToElements(selector, settings) {
 
 function addEvent(element, settings) {
   element.onmouseover = function() {
-    console.log('Oh yeah! You are over element', element, settings);
     addTooltip(element, settings);
   };
 
   element.onmouseleave = function() {
-    console.log('Oh yeah! You leave the element', element, settings);
     removeTooltip(element, settings);
   };
 }
@@ -137,7 +129,6 @@ function addTooltip(element, settings) {
   }
 }
 
-// TODO Tooltips not showing i.e. google.com input[type='submit']
 function addTooltipElement(element, settings) {
   element.classList.add('hm-tooltip-warning');
 
@@ -159,7 +150,6 @@ function addTooltipElement(element, settings) {
 }
 
 function removeTooltip(element, settings) {
-  console.log('Should remove tooltip', element);
   if (element.hasChildNodes()) {
     for (let i = 0; i < element.childNodes.length; i++) {
       if (_.find(element.childNodes[i].classList, elementClass => elementClass === 'hm-tooltip-warning-text')) {
