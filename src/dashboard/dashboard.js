@@ -47,8 +47,8 @@ function main(settings, spa) {
   const selector = settings.selector.trim();
 
   if (isAllowedDomain(window.location, domains)) {
+    addTooltipToElements(selector, settings);
     if (spa) {
-      addTooltipToElements(selector, settings);
       return;
     }
 
