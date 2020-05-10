@@ -11,17 +11,32 @@
       }
     </script>
   </head>
-  <body>
+  <body style="background-color: #e9ecef;">
     <div class="jumbotron">
       <h1 class="display-4">Hi, fellow developer!</h1>
+
       <p class="lead">
         This is a simple showcase for
         <a href="https://chrome.google.com/webstore/detail/ckgkmbahdjgcfjalbbgkgolgolbhihoe" target="_blank"
           >Warning Tooltip Chrome extension</a
         >
       </p>
+
       <hr class="my-4" />
-      <p>Install the extension and mouse over the red button while using the default extension configuration</p>
+
+      <p>Install the extension and mouse over the red button using the default extension configuration:</p>
+
+      <dl class="row">
+        <dt class="col-sm-2">Domains</dt>
+        <dd class="col-sm-10">hmartos.github.io</dd>
+
+        <dt class="col-sm-2">DOM elements selector</dt>
+        <dd class="col-sm-10">a.btn.btn-danger.btn-lg</dd>
+
+        <dt class="col-sm-2">Tooltip text</dt>
+        <dd class="col-sm-10">WARNING</dd>
+      </dl>
+
       <a class="btn btn-danger btn-lg" href="#" role="button" onclick="destroyEarth()">Destroy the earth</a>
       <a
         class="btn btn-secondary btn-lg"
