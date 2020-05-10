@@ -5,7 +5,10 @@ const DEBUG_MODE = false;
 try {
   getTabStatus()
     .then(status => {
-      document.querySelector('#status').textContent = status;
+      const statusInfo = document.querySelector('#status');
+      statusInfo.textContent = status.text;
+      statusInfo.classList.add(...status.style);
+      // TODO Add link to showcase in alert if status if variable is set
     })
     .catch(error => {
       console.error('Error getting tab status', error);
@@ -26,7 +29,7 @@ function getTabStatus() {
       .then(settings => {
         if (settings.defaultSettings) {
           debug('Using default settings!', settings);
-          resolve(chrome.i18n.getMessage('usingDefaultSettings'));
+          resolve({ text: chrome.i18n.getMessage('usingDefaultSettings'), style: ['alert', 'alert-info'] });
           return;
         }
 
@@ -36,10 +39,10 @@ function getTabStatus() {
 
           if (isAllowedDomain(url, domains)) {
             debug('Warning tooltips enabled for this domain', url);
-            resolve(chrome.i18n.getMessage('showingTooltips'));
+            resolve({ text: chrome.i18n.getMessage('showingTooltips'), style: ['alert', 'alert-success'] });
           } else {
             debug('Warning tooltips not enabled for this domain', url);
-            resolve(chrome.i18n.getMessage('notShowingTooltips'));
+            resolve({ text: chrome.i18n.getMessage('notShowingTooltips'), style: ['alert', 'alert-danger'] });
           }
         });
       })
