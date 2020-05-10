@@ -1,19 +1,35 @@
-<h1>Hi, fellow developer!</h1>
-<h3>
-  This is a showcase for <a href="https://github.com/hmartos/warning-tooltip" target="_blank">Warning Tooltip</a> Chrome
-  extension
-</h3>
-
-<button type="button" onclick="destroyEarth()" class="btn-show-tooltip">Destroy the earth</button>
-
-<button type="button" class="btn-not-show-tooltip">Please, don't</button>
-
-<script type="text/javascript">
-  function destroyEarth() {
-    console.log('Destroying the earth...');
-  }
-</script>
-
-<!-- TODO Styling -->
-<!-- TODO Instructions to test -->
-<!-- TODO Enlace a Chrome Web Store -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warning Tooltip Showcase</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <script type="text/javascript">
+      function destroyEarth() {
+        console.log('Destroying the earth...');
+      }
+    </script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Hi, fellow developer!</h1>
+      <p class="lead">
+        This is a simple showcase for
+        <a href="https://chrome.google.com/webstore/detail/ckgkmbahdjgcfjalbbgkgolgolbhihoe" target="_blank"
+          >Warning Tooltip Chrome extension</a
+        >
+      </p>
+      <hr class="my-4" />
+      <p>Install the extension and mouse over the red button while using the default extension configuration</p>
+      <a class="btn btn-danger btn-lg" href="#" role="button" onclick="destroyEarth()">Destroy the earth</a>
+      <a
+        class="btn btn-secondary btn-lg"
+        href="https://github.com/hmartos/warning-tooltip"
+        target="_blank"
+        role="button"
+        >View on GitHub</a
+      >
+    </div>
+  </body>
+</html>
