@@ -44,6 +44,10 @@
     "message": "Save",
     "description": "Save"
   },
+  "savedSettings": {
+    "message": "Successfully saved settings",
+    "description": "Successfull save settings message"
+  },
   "showingTooltips": {
    "message": "Showing warning tooltips in this tab",
     "description": "Warning Tooltip status in selected tab"

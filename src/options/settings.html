@@ -10,35 +10,33 @@
         <h1 id="title" class="hm-title"></h1>
       </div>
 
-      <h2 id="settingsTitle" class="hm-settings-title"></h2>
-
       <form id="settingsForm" data-parsley-validate>
         <div id="domainsContainer" class="domains-container">
-          <h3></h3>
-          <div>
+          <div class="form-group">
+            <label for="domains"></label>
+            <textarea id="domains" class="form-control" rows="5" data-parsley-trigger="input" required></textarea>
             <p class="hm-info"></p>
-            <textarea id="domains" rows="10" cols="50" data-parsley-trigger="input" required></textarea>
           </div>
         </div>
 
         <div id="selectorContainer" class="selector-container">
-          <h3></h3>
-          <div>
+          <div class="form-group">
+            <label for="selector"></label>
+            <input id="selector" class="form-control" type="text" data-parsley-trigger="input" required />
             <p class="hm-info"></p>
-            <input id="selector" type="text" data-parsley-trigger="input" required />
           </div>
         </div>
 
         <div id="tooltipTextContainer" class="tooltip-text-container">
-          <h3></h3>
-          <div>
+          <div class="form-group">
+            <label for="tooltipText"></label>
+            <input id="tooltipText" class="form-control" type="text" data-parsley-trigger="input" required />
             <p class="hm-info"></p>
-            <input id="tooltipText" type="text" data-parsley-trigger="input" required />
           </div>
         </div>
 
-        <div id="status"></div>
-        <button id="save" class="hm-save-btn"></button>
+        <button id="save" class="btn btn-primary"></button>
+        <div id="status" class="alert alert-success" role="alert" hidden></div>
       </form>
     </div>
     <script src="../vendor/js/jquery.min.js"></script>
