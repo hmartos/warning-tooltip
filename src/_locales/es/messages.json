@@ -33,6 +33,9 @@
   "save": {
     "message": "Guardar"
   },
+  "savedSettings": {
+    "message": "Configuración guardada correctamente"
+  },
   "showingTooltips": {
    "message": "Mostrando tooltips de alerta en esta pestaña"
   },
