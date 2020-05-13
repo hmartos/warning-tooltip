@@ -11,7 +11,7 @@ function debug(message, data) {
 function loadSettings() {
   const DEFAULT_SETTINGS = {
     domains: ['hmartos.github.io'],
-    selector: 'button.btn-show-tooltip',
+    selector: 'a.btn.btn-danger.btn-lg',
     tooltipText: 'WARNING',
     defaultSettings: true,
   };
