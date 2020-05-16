@@ -9,6 +9,9 @@
   "settings": {
     "message": "Configuración"
   },
+  "extensionSettings": {
+    "message": "Configuración Tooltip de alerta"
+  },
   "usingDefaultSettings": {
     "message": "Estás usando la configuración por defecto. Configura la extensión 👇"
   },
@@ -32,6 +35,9 @@
   },
   "save": {
     "message": "Guardar"
+  },
+  "savedSettings": {
+    "message": "Configuración guardada correctamente"
   },
   "showingTooltips": {
    "message": "Mostrando tooltips de alerta en esta pestaña"

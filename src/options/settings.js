@@ -33,13 +33,12 @@ window.Parsley.on('form:success', function() {
 });
 
 function buildSettingsPage() {
-  document.querySelector('#title').textContent = chrome.i18n.getMessage('extensionTitle');
-  document.querySelector('#settingsTitle').textContent = chrome.i18n.getMessage('settings');
-  document.querySelector('#domainsContainer h3').textContent = chrome.i18n.getMessage('domains');
+  document.querySelector('#title').textContent = chrome.i18n.getMessage('extensionSettings');
+  document.querySelector('#domainsContainer label').textContent = chrome.i18n.getMessage('domains');
   document.querySelector('#domainsContainer .hm-info').textContent = chrome.i18n.getMessage('domainsInfo');
-  document.querySelector('#selectorContainer h3').textContent = chrome.i18n.getMessage('selector');
+  document.querySelector('#selectorContainer label').textContent = chrome.i18n.getMessage('selector');
   document.querySelector('#selectorContainer .hm-info').textContent = chrome.i18n.getMessage('selectorInfo');
-  document.querySelector('#tooltipTextContainer h3').textContent = chrome.i18n.getMessage('tooltipText');
+  document.querySelector('#tooltipTextContainer label').textContent = chrome.i18n.getMessage('tooltipText');
   document.querySelector('#tooltipTextContainer .hm-info').textContent = chrome.i18n.getMessage('tooltipTextInfo');
   document.querySelector('#save').textContent = chrome.i18n.getMessage('save');
 }
@@ -70,10 +69,14 @@ function saveOptions() {
   saveSettings(settings)
     .then(() => {
       var status = document.getElementById('status');
-      status.textContent = 'Options saved.';
+      status.textContent = chrome.i18n.getMessage('savedSettings');
+      status.classList.add(['alert', 'alert-success']);
+      status.removeAttribute('hidden');
       setTimeout(function() {
         status.textContent = '';
-      }, 2000);
+        status.classList.remove(['alert', 'alert-success']);
+        status.setAttribute('hidden', true);
+      }, 3000);
     })
     .catch(error => {
       // TODO Show error with link to issues
