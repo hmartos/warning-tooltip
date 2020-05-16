@@ -33,9 +33,7 @@ window.Parsley.on('form:success', function() {
 });
 
 function buildSettingsPage() {
-  document.querySelector('#title').textContent = `${chrome.i18n.getMessage('extensionTitle')} ${chrome.i18n.getMessage(
-    'settings'
-  )}`;
+  document.querySelector('#title').textContent = chrome.i18n.getMessage('extensionSettings');
   document.querySelector('#domainsContainer label').textContent = chrome.i18n.getMessage('domains');
   document.querySelector('#domainsContainer .hm-info').textContent = chrome.i18n.getMessage('domainsInfo');
   document.querySelector('#selectorContainer label').textContent = chrome.i18n.getMessage('selector');
