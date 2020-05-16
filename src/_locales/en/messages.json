@@ -12,6 +12,10 @@
     "message": "Settings",
     "description": "Settings"
   },
+  "extensionSettings": {
+    "message": "Warning Tooltip Settings",
+    "description": "Extension settings"
+  },
   "usingDefaultSettings": {
     "message": "You are using the default settings. Configure the extension 👇",
     "description": "Using default settings message"

@@ -1,5 +1,5 @@
 .hm-tooltip-settings {
-  width: 500px;
+  width: 550px;
   margin: 50px auto;
 }
 
@@ -103,7 +103,7 @@ textarea.parsley-error {
 }
 
 .btn-primary {
-  width: 75px;
+  min-width: 75px;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
