@@ -27,22 +27,20 @@ function getTabStatus() {
   return new Promise((resolve, reject) => {
     loadSettings()
       .then(settings => {
-        if (settings.defaultSettings) {
-          debug('Using default settings!', settings);
-          resolve({ text: chrome.i18n.getMessage('usingDefaultSettings'), style: ['alert', 'alert-info'] });
-          return;
-        }
-
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
           const domains = settings.domains;
           const url = tabs[0].url;
 
           if (isAllowedDomain(url, domains)) {
             debug('Warning tooltips enabled for this domain', url);
-            resolve({ text: chrome.i18n.getMessage('showingTooltips'), style: ['alert', 'alert-success'] });
+            return resolve({ text: chrome.i18n.getMessage('showingTooltips'), style: ['alert', 'alert-success'] });
           } else {
+            if (settings.defaultSettings) {
+              debug('Using default settings!', settings);
+              return resolve({ text: chrome.i18n.getMessage('usingDefaultSettings'), style: ['alert', 'alert-info'] });
+            }
             debug('Warning tooltips not enabled for this domain', url);
-            resolve({ text: chrome.i18n.getMessage('notShowingTooltips'), style: ['alert', 'alert-danger'] });
+            return resolve({ text: chrome.i18n.getMessage('notShowingTooltips'), style: ['alert', 'alert-danger'] });
           }
         });
       })
