@@ -2,6 +2,16 @@
 
 This file contains changes based on [this template](https://github.com/palantir/plottable/wiki/Release-Notes-Template)
 
+## 1.2.0
+
+### Improvements
+
+- Style improvement on popup and settings page
+
+### Bug fixes
+
+- Fixed bug with using default settings message being shown even on the default allowed domain
+
 ## 1.1.0
 
 ### New Features

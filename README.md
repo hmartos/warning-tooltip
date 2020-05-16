@@ -22,6 +22,8 @@ This Chrome extension allows you to show a warning tooltip over specific DOM ele
 ![Screenshot](./screenshots/screenshot2_1280x800.png)
 ![Screenshot](./screenshots/screenshot3_1280x800.png)
 
+## [See the DEMO](https://hmartos.github.io/warning-tooltip)
+
 ## Requirements
 
 - [Git](https://git-scm.com/)
