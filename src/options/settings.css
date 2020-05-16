@@ -45,6 +45,7 @@ textarea.form-control {
   display: block;
   margin-top: 0.25rem;
   color: #6c757d !important;
+  font-size: 13px;
 }
 
 label {
